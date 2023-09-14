@@ -1,0 +1,6 @@
+.filterForm {
+  display: flex;
+  gap: 18px;
+
+  margin-bottom: 50px;
+}

@@ -1,0 +1,57 @@
+.searchBtn,
+.rentalBtn,
+.learnMoreBtn {
+  background-color: #3470ff;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  border-radius: 12px;
+  transition: all 150ms linear;
+}
+
+.searchBtn {
+  width: 136px;
+  height: 48px;
+}
+
+.rentalBtn {
+  width: 168px;
+  height: 44px;
+}
+
+.learnMoreBtn {
+  width: 274px;
+  height: 44px;
+}
+
+.searchBtn:hover,
+.searchBtn:focus,
+.searchBtn:active,
+.rentalBtn:hover,
+.rentalBtn:focus,
+.rentalBtn:active,
+.learnMoreBtn:hover,
+.learnMoreBtn:focus,
+.learnMoreBtn:active {
+  background-color: #0b44cd;
+}
+
+.btnLoadMore {
+  display: inline-block;
+
+  color: #3470ff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration-line: underline;
+  transition: all 150ms linear;
+
+
+}
+
+.btnLoadMore:hover,
+.btnLoadMore:focus,
+.btnLoadMore:active {
+  color: #0b44cd;
+}

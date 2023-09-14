@@ -1,0 +1,47 @@
+.cardItem {
+  width: 274px;
+}
+
+.imageContainer{
+  position: relative;
+}
+
+.imgItem {
+  width: 274px;
+  height: 268px;
+  border-radius: 14px;
+  background-color: #f3f3f2;
+  object-fit: cover;
+
+  margin-bottom: 14px;
+}
+
+.containerTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nameTitle,
+.priceTitle {
+  color: #121417;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.containerCharacteristics {
+  margin-bottom: 28px;
+}
+
+.textCharacteristics{
+  color: rgba(18, 20, 23, 0.50);
+font-size: 12px;
+font-weight: 400;
+line-height: 1.5;
+}
+
+.separator {
+  width: 1px;
+  height: 16px;
+  stroke-width: 1px;
+}
