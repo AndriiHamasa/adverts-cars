@@ -1,15 +1,53 @@
-import { useState } from "react";
-import css from "./FavoriteSvgButton.module.css"
+import { useCallback, useEffect, useState } from "react";
+import css from "./FavoriteSvgButton.module.css";
+import { useCarContext } from "../Context/Context";
+import PropTypes from 'prop-types';
 
-const FavoriteSvgButton = () => {
+const isInFavoriteArr = (id, list) => {
+  const card = list.find((card) => card.id === id);
+  if (card) {
+    return true
+  }
+
+  return false
+}
+
+const FavoriteSvgButton = ({ carId }) => {
   // Обработчик клика для кнопки
   const [isClicked, setIsClicked] = useState(false);
+  const { carList, favoriteList } = useCarContext();
+
+  const findCardToAddToLocal = useCallback(
+    (id) => {
+      const card = carList.carListValue.find((card) => card.id === id);
+      console.log('favoriteList.favoriteListValue before', favoriteList.favoriteListValue)
+      favoriteList.favoriteListFn([...favoriteList.favoriteListValue, card]);
+      console.log(
+        "favoriteList.favoriteListValue after update",
+        favoriteList.favoriteListValue
+      );
+    },
+    [carList.carListValue, favoriteList]
+  );
+
+  
 
   // Обработчик клика для кнопки
   const handleClick = () => {
     // Ваша логика обработки клика
     setIsClicked(!isClicked);
   };
+
+  useEffect(() => {
+    
+
+    if (isClicked && !isInFavoriteArr(carId, favoriteList.favoriteListValue)) {
+      findCardToAddToLocal(carId);
+      // arrExceptLocalStorage.push(carId)
+    } else {
+      // arrExceptLocalStorage.splice(arrExceptLocalStorage.indexOf(carId), 1)
+    }
+  }, [carId, findCardToAddToLocal, isClicked]);
 
   const buttonColor = isClicked ? "#3470FF" : "transparent"; // Определяем цвет фона
 
@@ -21,7 +59,11 @@ const FavoriteSvgButton = () => {
       viewBox="0 0 18 18"
       fill="none"
       onClick={handleClick} // Добавляем обработчик клика
-      style={{ cursor: "pointer", fill: buttonColor, stroke: isClicked ? buttonColor : "#FFF" }} // Устанавливаем цвет фона
+      style={{
+        cursor: "pointer",
+        fill: buttonColor,
+        stroke: isClicked ? buttonColor : "#FFF",
+      }} // Устанавливаем цвет фона
     >
       {/* Ваш SVG-код */}
       <path
@@ -77,3 +119,7 @@ fill="none"
 //         stroke-linecap="round"
 //         stroke-linejoin="round"
 export default FavoriteSvgButton;
+
+FavoriteSvgButton.propTypes = {
+  carId: PropTypes.number.isRequired,
+}

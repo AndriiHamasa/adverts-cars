@@ -24,7 +24,7 @@ import PropTypes from "prop-types";
 // };
 
 const CardItem = ({ data }) => {
-  const { address, rentalCompany, type, make, id, accessories } = data;
+  const { address, rentalCompany, type, make, id, accessories, rentalPrice, img, year } = data;
   // eslint-disable-next-line react/prop-types
   // console.log('data ==>> ', data)
   const adrressArr = address.split(", ");
@@ -41,11 +41,7 @@ const CardItem = ({ data }) => {
   ];
   // console.log("characteristicArray", characteristicArray);
 
-  
-  
-  // const handleClick = () => {
-  //   console.log('Click')
-  // }
+
 
   const handleOpenModal = () => {
     console.log('CLICK')
@@ -58,12 +54,12 @@ const CardItem = ({ data }) => {
     <li className={css.cardItem}>
       <div>
         <div className={css.imageContainer}>
-          <img className={css.imgItem} src={data.img} alt="" />
-          <FavoriteSvgButton />
+          <img className={css.imgItem} src={img} alt="" />
+          <FavoriteSvgButton carId={id} />
         </div>
         <div className={css.containerTitle}>
-          <h3 className={css.nameTitle}>{`${data.make}, ${data.year}`}</h3>
-          <h3 className={css.priceTitle}>{`${data.rentalPrice}`}</h3>
+          <h3 className={css.nameTitle}>{`${make}, ${year}`}</h3>
+          <h3 className={css.priceTitle}>{`${rentalPrice}`}</h3>
         </div>
         <div className={css.containerCharacteristics}>
           {/* <Characteristics arr={characteristicArray} /> */}

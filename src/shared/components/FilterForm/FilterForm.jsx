@@ -2,8 +2,18 @@ import Select from "react-select";
 import Button from "../Button/Button";
 import { selectStyles } from "./selectStyles";
 import css from "./FilterForm.module.css";
+// import { useCarContext } from "../Context/Context";
+// import { useState } from "react";
+// import fetchData from "../../../helpers/fetchData";
 
 const FilterForm = () => {
+  // const { carList, favoriteList } = useCarContext();
+
+  // const [carMark, setCarMark] = useState("volvo");
+  // const [price, setprice] = useState(50);
+  // const [mileageFrom, setMileageFrom] = useState(null);
+  // const [mileageTo, setmileageTo] = useState(null);
+
   // для норм бекенда
   // const takeOnePerItem = (arr) => {
   //   const result = [];
@@ -51,15 +61,26 @@ const FilterForm = () => {
     { value: 80, label: 80 },
     { value: 90, label: 90 },
   ];
+
+  const handleChangeSelect = (selectedOption) => {
+    console.log("selectedOption", selectedOption);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submit");  
+  };
+
   return (
-    <form className={css.filterForm}>
+    <form className={css.filterForm} onSubmit={handleSubmit}>
       <Select
         placeholder="Enter the text"
         styles={selectStyles(224)}
         options={markOptions}
+        onChange={handleChangeSelect}
       />
-      <Select options={priceOptions} styles={selectStyles(125)} />
-      <label >
+      <Select options={priceOptions} styles={selectStyles(125)} onChange={handleChangeSelect}/>
+      <label>
         From
         <input type="text" />
       </label>
@@ -67,7 +88,7 @@ const FilterForm = () => {
         To
         <input type="text" />
       </label>
-      <Button text={"Search"} type={"searchBtn"}/>
+      <Button text={"Search"} type={"searchBtn"} />
     </form>
   );
 };
