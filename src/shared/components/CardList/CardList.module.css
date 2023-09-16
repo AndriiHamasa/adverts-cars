@@ -4,4 +4,6 @@
   justify-content: space-between; /* Равномерное распределение по горизонтали */
   row-gap: 29px;
   column-gap: 50px;
+
+  margin-bottom: 100px;
 }

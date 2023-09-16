@@ -3,7 +3,6 @@ import Layout from "./shared/components/Layout/Layout";
 import HomePage from "./pages/HomePage/HomePage";
 import CatalogPage from "./pages/CatalogPage/CatalogPage";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Context from "./shared/components/Context/Context";
 
 // створили дядю
@@ -11,6 +10,7 @@ import Context from "./shared/components/Context/Context";
 // Provider - це типу дисплей; value - це те, що показує дисплей
 
 function App() {
+  
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -34,7 +34,7 @@ function App() {
           }
         />
         {/* </CarListContext.Provider> */}
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<HomePage />} />
       </Route>
     </Routes>
   );

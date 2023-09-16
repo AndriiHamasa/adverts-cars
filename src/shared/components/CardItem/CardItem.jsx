@@ -1,34 +1,18 @@
-import { useState } from "react";
 import Button from "../Button/Button";
 import FavoriteSvgButton from "../FavoriteSvgButton/FavoriteSvgButton";
-// import ModalComponent from "../Modal/Modal";
 import css from "./CardItem.module.css";
 import PropTypes from "prop-types";
+import { useCarContext } from "../Context/Context";
+import { useEffect, useRef } from "react";
 
-// eslint-disable-next-line react/prop-types
 
-// const Characteristics = ({ arr }) => {
-//   const resArr = [];
-//   console.log('<div className={css.separator}></div>', <div className={css.separator}></div>)
-//   for (let i = 0; i < arr.length; i++) {
-//     // console.log('arr[i]', arr[i])
-//     if (i + 1 === arr.length) {
-//       resArr.push(arr[i]);
-//       break;
-//     }
-//     resArr.push(arr[1], <div className={css.separator}></div>);
-//   }
 
-//   // console.log("resArr", resArr)
-//   return resArr.join('')
-// };
 
 const CardItem = ({ data }) => {
+  const { modal, favoriteList } = useCarContext()
+  
   const { address, rentalCompany, type, make, id, accessories, rentalPrice, img, year } = data;
-  // eslint-disable-next-line react/prop-types
-  // console.log('data ==>> ', data)
   const adrressArr = address.split(", ");
-  const [showModal, setShowModal] = useState(false);
 
   const characteristicArray = [
     adrressArr[adrressArr.length - 2],
@@ -39,15 +23,40 @@ const CardItem = ({ data }) => {
     id,
     accessories[0],
   ];
-  // console.log("characteristicArray", characteristicArray);
 
+  let isClickedBoolRef = useRef(false)
+  const isInLocalStorage = localStorage.getItem("favoriteList")
+  useEffect(() => {
+    if (isInLocalStorage && favoriteList.favoriteListValue.length === 0) {
+      console.log('ЗАШЕЛ')
+      // console.log('чтото есть в локал')
+      // если длина больше нуля, то нужно поместить все в favoriteList тот, что в контексте
+      const arrFromLocal = JSON.parse(isInLocalStorage)
+      if (arrFromLocal.length > 0) {
+        // console.log('должно было закинуться')
+        favoriteList.favoriteListFn(arrFromLocal)
+        console.log('arrFromLocal', arrFromLocal)
+        isClickedBoolRef.current = favoriteList.favoriteListValue.some(car => car.id === id)
+      }
+      // тут возможно придется закидывать вручную, а может и само сможет
+  
+      
+  
+      // if (favoriteList.favoriteListValue.includes(car => car.id === carId)) {
+      //   // console.log('есть в локал, ')
+      //   setIsClicked(true)
+      // }
+    }
+  }, [favoriteList, id, isInLocalStorage])
+
+  
+
+  
+  
 
 
   const handleOpenModal = () => {
-    console.log('CLICK')
-    // e.prevenDefault()
-    setShowModal(true);
-    console.log("showModal", showModal);
+    modal.setShowModal(data)
   };
 
   return (
@@ -55,15 +64,14 @@ const CardItem = ({ data }) => {
       <div>
         <div className={css.imageContainer}>
           <img className={css.imgItem} src={img} alt="" />
-          <FavoriteSvgButton carId={id} />
+          <FavoriteSvgButton carId={id} isClickedBool={isClickedBoolRef.current } />
         </div>
         <div className={css.containerTitle}>
           <h3 className={css.nameTitle}>{`${make}, ${year}`}</h3>
           <h3 className={css.priceTitle}>{`${rentalPrice}`}</h3>
         </div>
         <div className={css.containerCharacteristics}>
-          {/* <Characteristics arr={characteristicArray} /> */}
-          {/* <div className={css.separator}></div> */}
+          
           <p className={css.textCharacteristics}>
             {characteristicArray.join(" ")}
           </p>
@@ -73,8 +81,7 @@ const CardItem = ({ data }) => {
           type={"learnMoreBtn"}
           onClick={handleOpenModal}
         />
-        {/* <button onClick={handleClick}>Click me</button> */}
-        {/* {showModal && <ModalComponent data={data} modalIsOpen={ showModal} />} */}
+        
       </div>
     </li>
   );
@@ -86,13 +93,4 @@ CardItem.propTypes = {
   data: PropTypes.shape(),
 };
 
-// ContactList.propTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.node,
-//     })
-//   ),
-//   onDelete: PropTypes.func.isRequired,
-// };
+

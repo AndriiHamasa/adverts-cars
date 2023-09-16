@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import PropTypes from "prop-types"
 
 const CarListContext = createContext();
 
@@ -7,6 +8,7 @@ export const useCarContext = () => useContext(CarListContext)
 const Context = ({children}) => {
   const [carList, setCarList] = useState([]);
   const [favoriteList, setFavoriteList] = useState([]);
+  const [showModal, setShowModal] = useState(null)
 
   return (
     <CarListContext.Provider
@@ -16,9 +18,18 @@ const Context = ({children}) => {
           favoriteListValue: favoriteList,
           favoriteListFn: setFavoriteList,
         },
+        modal: {
+          showModal,
+          setShowModal
+        },
       }}
     >{ children}</CarListContext.Provider>
   );
 };
 
 export default Context;
+
+
+Context.propTypes = {
+  children: PropTypes.any,
+}
