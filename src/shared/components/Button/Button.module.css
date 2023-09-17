@@ -48,6 +48,7 @@
   transition: all 150ms linear;
 
 
+  margin-bottom: 24px;
 }
 
 .btnLoadMore:hover,

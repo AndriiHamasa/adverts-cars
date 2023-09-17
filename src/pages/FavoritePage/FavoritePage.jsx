@@ -1,26 +1,41 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Sidebar from "../../shared/components/Sidebar/Sidebar";
 import ViewingArea from "../../shared/components/ViewingArea/ViewingArea";
 import BaseStyles from "../../styles/base-styles.module.css";
 import { useCarContext } from "../../shared/components/Context/Context";
 
-const getData = (id, arr) => {
-  const car = arr.find((el) => (el.id = id));
-
-  return car;
-};
 
 const FavoritePage = () => {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState([]);
   const { favoriteList } = useCarContext();
+  const isInLocal = localStorage.getItem("favoriteList");
 
-  console.log('selected', selected)
-  const data = getData(selected, favoriteList.favoriteListValue);
+  useEffect(() => {
+    if (isInLocal) {
+      
+
+      if (
+        JSON.parse(isInLocal).length > 0 &&
+        favoriteList.favoriteListValue.length === 0
+      ) {
+        
+        favoriteList.favoriteListFn(JSON.parse(isInLocal));
+      }
+    }
+  }, [favoriteList, isInLocal]);
+
+  const handleSelect = useCallback((id) => {
+    setSelected((prev) => [...prev, id]);
+  }, []);
+
 
   return (
     <section className={BaseStyles.container}>
-      <Sidebar handleSelect={setSelected} />
-      {selected && <ViewingArea data={data} />}
+      <Sidebar handleSelect={handleSelect} />
+      {selected[selected.length - 1] &&
+        favoriteList.favoriteListValue.length !== 0 && (
+          <ViewingArea carId={selected[selected.length - 1]} />
+        )}
     </section>
   );
 };

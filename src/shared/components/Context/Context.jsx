@@ -21,7 +21,7 @@ const Context = ({children}) => {
         modal: {
           showModal,
           setShowModal
-        },
+        }
       }}
     >{ children}</CarListContext.Provider>
   );

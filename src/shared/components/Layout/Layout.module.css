@@ -1,0 +1,12 @@
+.layoutCover {
+  /* background-image: url("../../pictures/pngtree-smart-car-vector-seamless-pattern-png-image_1959120.jpg"); */
+  /* background-size: cover; */
+  /* background-attachment: fixed; Фон будет фиксированным */
+  /* Другие свойства */
+  /* min-width: 100vh; */
+  /* width: 100%;
+  height: 100%; */
+  /* Дополнительные свойства для контейнера, если это необходимо */
+  /* overflow-y: scroll; */
+  height: 100vh;
+}

@@ -1,8 +1,18 @@
 import Button from "../Button/Button";
+import { useCarContext } from "../Context/Context";
 import modalCss from "../Modal/Modal.module.css";
 import PropTypes from "prop-types";
 
-const ViewingArea = ({ data }) => {
+const ViewingArea = ({ carId }) => {
+  
+  const { favoriteList } = useCarContext()
+
+  const getData = (carId) => {
+    const obj = favoriteList.favoriteListValue.find(obj => obj.id === carId)
+    return obj
+  }
+
+
   const {
     accessories,
     address,
@@ -18,7 +28,7 @@ const ViewingArea = ({ data }) => {
     rentalPrice,
     type,
     year,
-  } = data;
+  } = getData(carId);
 
   const adrressArr = address.split(", ");
 
@@ -87,5 +97,5 @@ const ViewingArea = ({ data }) => {
 export default ViewingArea;
 
 ViewingArea.propTypes = {
-  data: PropTypes.shape(),
+  carId: PropTypes.number.isRequired,
 };

@@ -28,7 +28,6 @@ const isInFavoriteList = (carId, arr) => {
 
 const FavoriteSvgButton = ({ carId, isClickedBool = false }) => {
   // Обработчик клика для кнопки
-  console.log('isClickedBool', isClickedBool)
   const [isClicked, setIsClicked] = useState(isClickedBool);
   const { carList, favoriteList } = useCarContext();
 
@@ -65,7 +64,6 @@ const FavoriteSvgButton = ({ carId, isClickedBool = false }) => {
   
 
   const handleClick = () => {
-    console.log('click')
     setIsClicked(!isClicked);
   };
 
