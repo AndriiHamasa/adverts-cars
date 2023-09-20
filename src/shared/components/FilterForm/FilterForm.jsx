@@ -1,33 +1,45 @@
-import Select from "react-select";
-import Button from "../Button/Button";
 import { selectStyles } from "./selectStyles";
 import css from "./FilterForm.module.css";
-// import { useCarContext } from "../Context/Context";
-// import { useState } from "react";
-// import fetchData from "../../../helpers/fetchData";
+import { forwardRef } from "react";
+import PropTypes from "prop-types";
+import { useForm, Controller } from "react-hook-form";
+import Select from "react-select";
 
-const FilterForm = () => {
-  // const { carList, favoriteList } = useCarContext();
+const Input = ({ label, register, registame, classStyle }) => (
+  <div>
+    <label htmlFor={label} className={css[classStyle]}>
+      {label}
+      <input
+        className={css.inputField}
+        id={label}
+        {...register(registame)}
+      />
+    </label>
+  </div>
+);
 
-  // const [carMark, setCarMark] = useState("volvo");
-  // const [price, setprice] = useState(50);
-  // const [mileageFrom, setMileageFrom] = useState(null);
-  // const [mileageTo, setmileageTo] = useState(null);
+// eslint-disable-next-line react/display-name
+const SelectForm = forwardRef(
+  ({ onChange, onBlur, name, label, options, width }, ref) => (
+    <div className={css.inputContainer}>
+      {/* <label className={css.labelForm}>{label}</label> */}
+      <Select
+        styles={selectStyles(width)}
+        name={name}
+        ref={ref}
+        onChange={onChange}
+        onBlur={onBlur}
+        options={options} // Передайте варианты выбора в компонент react-select
+      />
+      {/* <select className={css.selectForm} name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
+      {options.map(obj => <option key={obj.value} value={obj.value}>{ obj.value}</option>)}
+      
+    </select> */}
+    </div>
+  )
+);
 
-  // для норм бекенда
-  // const takeOnePerItem = (arr) => {
-  //   const result = [];
-
-  //   for (const car of arr) {
-  //     if (!result.includes(car.make)) {
-  //       result.push(car.make);
-  //     }
-  //   }
-
-  //   return result;
-  // }
-  // const onePerCar = takeOnePerItem(carList);
-
+const FilterForm = ({ handleFilter }) => {
   const markOptions = [
     { value: "Volvo", label: "Volvo" },
     { value: "HUMMER", label: "HUMMER" },
@@ -62,35 +74,80 @@ const FilterForm = () => {
     { value: 90, label: 90 },
   ];
 
-  const handleChangeSelect = (selectedOption) => {
-    console.log("selectedOption", selectedOption);
-  };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submit");  
+  const onSubmit = (data) => {
+    // тут стразу вызываем функцию, котора меняет visibleArr в CatalogPage
+    handleFilter(data);
   };
 
   return (
-    <form className={css.filterForm} onSubmit={handleSubmit}>
-      <Select
-        placeholder="Enter the text"
-        styles={selectStyles(224)}
-        options={markOptions}
-        onChange={handleChangeSelect}
+    <form onSubmit={handleSubmit(onSubmit)} className={css.filterForm}>
+      <Controller
+        name="make"
+        control={control}
+        defaultValue="" 
+        render={({ field }) => (
+          <SelectForm
+            name="make"
+            label="Car brand"
+            options={markOptions}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+            value={field.value}
+            width={224}
+          />
+        )}
       />
-      <Select options={priceOptions} styles={selectStyles(125)} onChange={handleChangeSelect}/>
-      <label>
-        From
-        <input type="text" />
-      </label>
-      <label>
-        To
-        <input type="text" />
-      </label>
-      <Button text={"Search"} type={"searchBtn"} />
+      <Controller
+        name="rentalPrice"
+        control={control}
+        defaultValue="" 
+        render={({ field }) => (
+          <SelectForm
+            name="rentalPrice"
+            label="Price/ 1 hour"
+            options={priceOptions}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+            value={field.value}
+            width={125}
+          />
+        )}
+      />
+      <div className={css.mileageContainer}>
+        <Input
+          label="From"
+          registame={"mileageFrom"}
+          register={register}
+          classStyle={"mileageItemLeft"}
+        />
+        <Input
+          label="To"
+          registame={"mileageTo"}
+          register={register}
+          classStyle={"mileageItemRight"}
+        />
+      </div>
+
+      {errors.exampleRequired && <span>This field is required</span>}
+
+      
+      <button className={css.searchForm}>Search</button>
+      
     </form>
   );
+ 
 };
 
 export default FilterForm;
+
+FilterForm.propTypes = {
+  handleFilter: PropTypes.func,
+};

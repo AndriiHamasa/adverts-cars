@@ -12,7 +12,6 @@ const Catalog = ({data, changePage}) => {
  
 
   const handleClickLoadMore = () => {
-    console.log('Кликнули')
     changePage()
     // setPage(page + 1)
   }

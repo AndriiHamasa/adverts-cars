@@ -4,3 +4,113 @@
 
   margin-bottom: 50px;
 }
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.labelForm {
+  color: #8a8a89;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.selectForm {
+  border-radius: 14px;
+  background-color: #f7f7fb;
+
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.selectText {
+  color: #121417;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+}
+
+.searchForm {
+  background-color: #3470ff;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  border-radius: 12px;
+  transition: all 150ms linear;
+
+  width: 136px;
+  height: 48px;
+}
+
+.mileageContainer {
+  display: flex;
+}
+
+.inputLabel {
+  display: flex;
+  align-items: center;
+
+  color: #121417;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+}
+
+/* .mileageItem {
+  display: flex;
+  width: 160px;
+  height: 48px;
+
+  padding: 14px 24px;
+
+  align-items: center;
+
+  background-color: #f7f7fb;
+} */
+
+.mileageItemLeft {
+  display: flex;
+  width: 160px;
+  height: 48px;
+
+  padding: 14px 24px;
+
+  align-items: center;
+
+  background-color: #f7f7fb;
+  
+  
+  border-radius: 14px 0px 0px 14px;
+
+
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
+}
+.mileageItemRight {
+  display: flex;
+  width: 160px;
+  height: 48px;
+
+  padding: 14px 24px;
+
+  align-items: center;
+
+  background-color: #f7f7fb;
+  
+  border-radius: 0px 14px 14px 0px;
+}
+
+.inputField{
+  width: 90px;
+}
+
+.searchForm:hover,
+.searchForm:focus,
+.searchForm:active {
+  background-color: #0b44cd;
+}

@@ -26,15 +26,18 @@ const isInFavoriteList = (carId, arr) => {
 }
 
 
-const FavoriteSvgButton = ({ carId, isClickedBool = false }) => {
+const FavoriteSvgButton = ({ carId, isFavorite }) => {
   // Обработчик клика для кнопки
-  const [isClicked, setIsClicked] = useState(isClickedBool);
+  const [isClicked, setIsClicked] = useState(isFavorite);
   const { carList, favoriteList } = useCarContext();
 
   // нужно проверить если есть в локал, то поменять стейт на isClicked
   
   
 
+  // if (isFavorite) {
+  //   setIsClicked(true)
+  // }
   
 
 
@@ -100,5 +103,5 @@ export default FavoriteSvgButton;
 
 FavoriteSvgButton.propTypes = {
   carId: PropTypes.number.isRequired,
-  isClickedBool: PropTypes.bool,
+  isFavorite: PropTypes.bool,
 };

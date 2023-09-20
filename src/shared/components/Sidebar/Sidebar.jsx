@@ -2,8 +2,9 @@ import { useCallback } from "react";
 import { useCarContext } from "../Context/Context";
 import css from "./Sidebar.module.css";
 import PropTypes from "prop-types";
+// import TrashCanIcon from "./trash-can-icon.svg#basket";
 
-const Sidebar = ({ handleSelect }) => {
+const Sidebar = ({ handleSelect, removeFavorite }) => {
   // const [data, setData] = useState([]);
   const { favoriteList } = useCarContext();
 
@@ -20,15 +21,19 @@ const Sidebar = ({ handleSelect }) => {
       {favoriteList.favoriteListValue?.length > 0 && (
         <ul className={css.cardList}>
           {favoriteList.favoriteListValue.map((item) => (
-            <li key={item.id} className={css.cardItem}>
-              <button onClick={() => handleClick(item.id)}>
+            <li key={item.id} className={css.cardCheck}>
+              <button
+                className={`${css.cardItem} ${css.cardViewBtn}`}
+                onClick={() => handleClick(item.id)}
+              >
                 {item.make} - {item.model}
               </button>
+              <button onClick={() => removeFavorite(item.id)} className={css.delBtn}>Delete</button>
             </li>
           ))}
-          <li>Список</li>
         </ul>
       )}
+      {/* <TrashCanIcon width={50} height={50} /> Укажите желаемые размеры */}
     </aside>
   );
 };
@@ -37,4 +42,5 @@ export default Sidebar;
 
 Sidebar.propTypes = {
   handleSelect: PropTypes.func,
+  removeFavorite: PropTypes.func,
 };
