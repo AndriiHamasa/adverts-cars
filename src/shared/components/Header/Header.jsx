@@ -9,14 +9,14 @@ const Header = () => {
         <nav >
           <ul className={css.navList}>
             <li>
-              <Link to="/">Home</Link>
+              <Link className={css.navItem} to="/">Home</Link>
             </li>
 
             <li>
-              <Link to="/catalog">Catalog</Link>
+              <Link className={css.navItem} to="/catalog">Catalog</Link>
             </li>
             <li>
-              <Link to="/favorites">Favorites</Link>
+              <Link className={css.navItem} to="/favorites">Favorites</Link>
             </li>
           </ul>
         </nav>

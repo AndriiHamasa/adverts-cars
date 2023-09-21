@@ -62,16 +62,7 @@ const CatalogPage = () => {
     }
   }, [carList.carListValue]);
 
-  // сохраняем изменения в локал FAVORITE_LIST
-  // useEffect(() => {
-  //   const isInLocal = localStorage.getItem(CAR_CONSTANT_LIST.FAVORITE_LIST);
-  //   if (favoriteList.favoriteListValue.length !== JSON.parse(isInLocal)) {
-  //     saveDataToLocalStorage({
-  //       type: CAR_CONSTANT_LIST.FAVORITE_LIST,
-  //       payload: favoriteList.favoriteListValue,
-  //     })
-  //   }
-  // },[favoriteList.favoriteListValue])
+ 
 
   
   // здесь доодаем в visibleArr
@@ -123,6 +114,7 @@ const CatalogPage = () => {
 
     if (filteredData.length !== 0) {
       console.log('ЧАСТО ?')
+      setPage(1)
       setvisibleArr(filteredData)
     }
     

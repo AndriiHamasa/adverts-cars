@@ -1,0 +1,8 @@
+.hero {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../pictures/hero.jpg');
+  background-repeat: no-repeat; /* Определяем, как изображение будет повторяться */
+  background-size: cover; /* Устанавливаем размер фона */
+  background-position: center center; /* Устанавливаем позицию фона */
+}

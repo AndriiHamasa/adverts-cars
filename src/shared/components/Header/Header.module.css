@@ -1,10 +1,31 @@
-.headSection{
-    padding-top: 24px;
+.headSection {
+  padding-top: 24px;
 
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
-.navList{
-    display: flex;
-    gap: 40px;
+.navList {
+  display: flex;
+  gap: 40px;
+}
+
+.navItem {
+
+  color: #363535;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  padding: 7px 14px;
+  
+  border-radius: 5px;
+  background-color: #f9f9f9;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.navItem:hover,
+.navItem:focus,
+.navItem:active{
+  transform: scale(1.1);
 }

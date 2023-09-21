@@ -9,14 +9,11 @@ import CAR_CONSTANT_LIST from "../../helpers/constantsForLocalStorage";
 const FavoritePage = () => {
   const [selected, setSelected] = useState([]);
   const { favoriteList } = useCarContext();
-  const isInLocal = localStorage.getItem("favoriteList");
+  const isInLocal = localStorage.getItem(CAR_CONSTANT_LIST.FAVORITE_LIST);
 
   useEffect(() => {
     if (isInLocal) {
-      if (
-        JSON.parse(isInLocal).length > 0 &&
-        favoriteList.favoriteListValue.length === 0
-      ) {
+      if (favoriteList.favoriteListValue.length !== JSON.parse(isInLocal).length) {
         favoriteList.favoriteListFn(JSON.parse(isInLocal));
       }
     }
@@ -26,45 +23,33 @@ const FavoritePage = () => {
     setSelected((prev) => [...prev, id]);
   }, []);
 
-  // сохраняем изменения в локал FAVORITE_LIST
-  useEffect(() => {
-    const isInLocal = localStorage.getItem(CAR_CONSTANT_LIST.FAVORITE_LIST);
-    if (favoriteList.favoriteListValue.length !== JSON.parse(isInLocal).length) {
-      console.log('зашли чтобы прям убрать')
-      console.log('favoriteList.favoriteListValue', favoriteList.favoriteListValue)
-      saveDataToLocalStorage({
-        type: CAR_CONSTANT_LIST.FAVORITE_LIST,
-        payload: favoriteList.favoriteListValue,
-      });
-    }
-  }, [favoriteList.favoriteListValue]);
-
   const handleRemoveFavorite = (id) => {
-    console.log("id - значит зашли куда нужно", id);
-    console.log(
-      "favoriteList.favoriteListValue",
-      favoriteList.favoriteListValue
-    );
     const indexToDel = favoriteList.favoriteListValue.findIndex(
       (car) => car.id === id
     );
-    console.log("indexToDel", indexToDel);
     if (indexToDel >= 0) {
       const arr = [...favoriteList.favoriteListValue];
-      console.log('favoriteList.favoriteListValue', favoriteList.favoriteListValue[0])
-      console.log('arr', arr[0])
+
       arr.splice(indexToDel, 1);
-      console.log("arr", arr)
-      favoriteList.favoriteListFn(arr); 
+      // сначала попробуем удалить с локала, а потом со стейта и при перерендинге, того уже не будет
+      saveDataToLocalStorage({
+        type: CAR_CONSTANT_LIST.FAVORITE_LIST,
+        payload: arr
+      })
+      favoriteList.favoriteListFn(arr);      
     }
   };
+  console.log('selected', selected)
+  console.log('selected[selected.length - 1]', selected[selected.length - 1])
 
   return (
     <section className={BaseStyles.container}>
-      <Sidebar
-        handleSelect={handleSelect}
-        removeFavorite={handleRemoveFavorite}
-      />
+      {favoriteList.favoriteListValue.length !== 0 && (
+        <Sidebar
+          handleSelect={handleSelect}
+          removeFavorite={handleRemoveFavorite}
+        />
+      )}
       {selected[selected.length - 1] &&
         favoriteList.favoriteListValue.length !== 0 && (
           <ViewingArea carId={selected[selected.length - 1]} />
