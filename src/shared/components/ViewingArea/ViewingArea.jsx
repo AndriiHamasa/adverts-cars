@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "../Button/Button";
 import { useCarContext } from "../Context/Context";
 import modalCss from "../Modal/Modal.module.css";

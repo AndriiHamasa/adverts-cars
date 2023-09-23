@@ -9,32 +9,28 @@ const Input = ({ label, register, registame, classStyle }) => (
   <div>
     <label htmlFor={label} className={css[classStyle]}>
       {label}
-      <input
-        className={css.inputField}
-        id={label}
-        {...register(registame)}
-      />
+      <input className={css.inputField} id={label} {...register(registame)} />
     </label>
   </div>
 );
 
 // eslint-disable-next-line react/display-name
 const SelectForm = forwardRef(
-  ({ onChange, onBlur, name, label, options, width }, ref) => (
+  ({ onChange, onBlur, name, options, width, label }, ref) => (
     <div className={css.inputContainer}>
-      {/* <label className={css.labelForm}>{label}</label> */}
+      <label className={css.labelSelect} htmlFor={name}>
+        {label}
+      </label>
+
       <Select
+        id={name}
         styles={selectStyles(width)}
         name={name}
         ref={ref}
         onChange={onChange}
         onBlur={onBlur}
-        options={options} // Передайте варианты выбора в компонент react-select
+        options={options}
       />
-      {/* <select className={css.selectForm} name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-      {options.map(obj => <option key={obj.value} value={obj.value}>{ obj.value}</option>)}
-      
-    </select> */}
     </div>
   )
 );
@@ -83,7 +79,6 @@ const FilterForm = ({ handleFilter }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    // тут стразу вызываем функцию, котора меняет visibleArr в CatalogPage
     handleFilter(data);
   };
 
@@ -92,7 +87,7 @@ const FilterForm = ({ handleFilter }) => {
       <Controller
         name="make"
         control={control}
-        defaultValue="" 
+        defaultValue=""
         render={({ field }) => (
           <SelectForm
             name="make"
@@ -108,7 +103,7 @@ const FilterForm = ({ handleFilter }) => {
       <Controller
         name="rentalPrice"
         control={control}
-        defaultValue="" 
+        defaultValue=""
         render={({ field }) => (
           <SelectForm
             name="rentalPrice"
@@ -121,29 +116,31 @@ const FilterForm = ({ handleFilter }) => {
           />
         )}
       />
-      <div className={css.mileageContainer}>
-        <Input
-          label="From"
-          registame={"mileageFrom"}
-          register={register}
-          classStyle={"mileageItemLeft"}
-        />
-        <Input
-          label="To"
-          registame={"mileageTo"}
-          register={register}
-          classStyle={"mileageItemRight"}
-        />
+      <div className={css.mileageBox}>
+        <label className={css.labelSelect} htmlFor="mileage-container">
+          Сar mileage / km
+        </label>
+        <div id="mileage-container" className={css.mileageContainer}>
+          <Input
+            label="From"
+            registame={"mileageFrom"}
+            register={register}
+            classStyle={"mileageItemLeft"}
+          />
+          <Input
+            label="To"
+            registame={"mileageTo"}
+            register={register}
+            classStyle={"mileageItemRight"}
+          />
+        </div>
       </div>
 
       {errors.exampleRequired && <span>This field is required</span>}
 
-      
       <button className={css.searchForm}>Search</button>
-      
     </form>
   );
- 
 };
 
 export default FilterForm;

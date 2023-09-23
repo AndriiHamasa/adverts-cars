@@ -37,8 +37,6 @@ const CloseBtn = ({ onClick }) => {
 };
 
 const ModalComponent = () => {
-  const objContext = useCarContext();
-  console.log("objContext", objContext);
   const { modal } = useCarContext();
 
   const data = modal.showModal;
@@ -80,7 +78,6 @@ const ModalComponent = () => {
   const accessoriesAndfunctionalitiesArr = [...accessories, ...functionalities];
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  console.log("modalIsOpen", modalIsOpen);
 
   useEffect(() => {
     if (data) {
@@ -88,29 +85,25 @@ const ModalComponent = () => {
     }
   }, [data]);
 
-  // const openModal = () => {
-  //   setModalIsOpen(true);
-  // };
-
   const closeModal = () => {
-    console.log("CLOSE");
     modal.setShowModal(null);
     setModalIsOpen(false);
   };
 
   const modalStyle = {
+
     overlay: {
       backgroundColor: "rgba(18, 20, 23, 0.50)", // Устанавливаем фон для backdrop
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      overflow: "hidden", // возможно придется убрать
     },
     content: {
+
+      
       width: "541px",
       borderRadius: "24px",
       padding: "40px",
-      // Здесь можно задать стили для контента модального окна, если необходимо
+
+      marginLeft: "auto",
+      marginRight: "auto",
     },
   };
 
@@ -125,7 +118,7 @@ const ModalComponent = () => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="Пример модального окна"
+        contentLabel="modal"
         style={modalStyle}
       >
         <CloseBtn onClick={closeModal} />
@@ -170,12 +163,6 @@ const ModalComponent = () => {
 };
 
 export default ModalComponent;
-
-// ModalComponent.propTypes = {
-//   data: PropTypes.shape(),
-//   toOpenModal: PropTypes.bool.isRequired,
-//   // modalIsOpen: PropTypes.bool
-// };
 
 CloseBtn.propTypes = {
   onClick: PropTypes.func.isRequired,

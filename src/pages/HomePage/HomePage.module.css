@@ -1,8 +1,181 @@
-.hero {
-  width: 100vw;
-  height: 100vh;
-  background-image: url('../../pictures/hero.jpg');
-  background-repeat: no-repeat; /* Определяем, как изображение будет повторяться */
-  background-size: cover; /* Устанавливаем размер фона */
-  background-position: center center; /* Устанавливаем позицию фона */
+.heroSection {
+  position: relative;
+
+  background-image: url("../../pictures/banner.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 1600px;
+
+  height: 600px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroInfoContainer {
+  position: absolute;
+
+  right: 37px;
+  bottom: 109px;
+}
+
+.heroTitle {
+  width: 308px;
+  height: 85px;
+  flex-shrink: 0;
+
+  font-size: 32px;
+  font-weight: 600;
+
+  margin-bottom: 18px;
+}
+
+.heroText {
+  width: 268px;
+  font-size: 26px;
+  font-weight: 400;
+
+  margin-bottom: 20px;
+}
+
+/*  SERVICES SECTION   */
+
+.servicesSection {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 103px 128px;
+}
+
+.bannerContainer {
+  position: relative;
+
+  width: 817px;
+  height: 485px;
+}
+
+/* Позиционирование фигур */
+.shape1 {
+  /* position: absolute;
+  top: -70px;
+  left: 50px; */
+  /* z-index: 1;  */
+  /* transform: rotate(-157deg); */
+}
+
+.shape2 {
+  position: absolute;
+  top: 50px;
+  left: 150px;
+  /* z-index: 1;  */
+  /* transform: rotate(-12deg); */
+}
+
+.servicePicture {
+  position: absolute;
+  width: 817px;
+  height: 485px;
+  /* top: 0px;
+  left: 0px; */
+  z-index: 20;
+}
+
+.serviceInfoBlock {
+  margin-right: 10px;
+}
+
+.servicesTitle {
+  width: 410px;
+  color: #21408e;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.serviceItemList {
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+}
+
+.serviceItem {
+  display: flex;
+  gap: 32px;
+}
+
+.serviceItemContainer {
+  width: 354px;
+}
+
+.serviceSubTitle {
+  color: #121417;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.serviceText {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* EXPERIENCE SECTION */
+
+.experienceSection {
+  padding: 103px 128px;
+}
+
+.experienceTitle {
+  color: #121417;
+  text-align: center;
+  font-size: 45px;
+  font-weight: 400;
+  line-height: normal;
+
+  margin-bottom: 75px;
+}
+
+.experienceList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.experienceSvgContainer{
+  position: relative;
+  width: 100%;
+  height: 120px;
+
+  margin-bottom: 9px;
+}
+
+.experienceSvg{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Сдвиг элемента на 50% от его ширины и высоты влево и вверх */
+}
+
+.experienceSubTitle {
+  color: #121417;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: normal;
+
+  margin-bottom: 19px;
+}
+
+.experienceText {
+  width: 359px;
+
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
 }

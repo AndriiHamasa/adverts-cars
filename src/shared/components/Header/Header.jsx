@@ -6,6 +6,8 @@ const Header = () => {
   return (
     <header className={css.headSection}>
       <div className={BaseStyles.container}>
+        <div className={css.headerContainer}>
+        <Link className={css.navItem} to="/">AutoFleet<span className={css.logoSpan}>Leasing</span></Link>
         <nav >
           <ul className={css.navList}>
             <li>
@@ -19,7 +21,7 @@ const Header = () => {
               <Link className={css.navItem} to="/favorites">Favorites</Link>
             </li>
           </ul>
-        </nav>
+        </nav></div>
       </div>
     </header>
   );

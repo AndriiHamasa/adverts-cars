@@ -8,6 +8,7 @@ import { useCarContext } from "../../shared/components/Context/Context";
 import fetchData from "../../helpers/fetchData";
 import takeCardFromArr from "../../helpers/takeCardFromArr";
 import getFilteredData from "../../helpers/getFilteredData";
+import ScrollToTopButton from "../../shared/components/ScrollToTopButton/ScrollToTopButton";
 
 const CatalogPage = () => {
   const [error, setError] = useState(null);
@@ -117,14 +118,6 @@ const CatalogPage = () => {
       setPage(1)
       setvisibleArr(filteredData)
     }
-    
-
-    // if (carList.carListValue.length !== 0) {
-    //   const response = getFilteredData(data, carList.carListValue)
-    //   setvisibleArr(response)
-    // }
-    
-    
   }
 
   return (
@@ -134,6 +127,7 @@ const CatalogPage = () => {
       {visibleArr.length > 0 && (
         <Catalog data={visibleArr} changePage={onLoadMore} />
       )}
+      <ScrollToTopButton/>
     </section>
   );
 };

@@ -1,6 +1,7 @@
 .filterForm {
   display: flex;
   gap: 18px;
+  align-items: flex-end;
 
   margin-bottom: 50px;
 }
@@ -28,6 +29,14 @@
   padding-right: 18px;
 }
 
+.labelSelect {
+  color: #8a8a89;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.13;
+;
+}
+
 .selectText {
   color: #121417;
   font-size: 18px;
@@ -46,6 +55,12 @@
 
   width: 136px;
   height: 48px;
+}
+
+.mileageBox{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .mileageContainer {
@@ -84,10 +99,8 @@
   align-items: center;
 
   background-color: #f7f7fb;
-  
-  
-  border-radius: 14px 0px 0px 14px;
 
+  border-radius: 14px 0px 0px 14px;
 
   border-right: 1px solid rgba(138, 138, 137, 0.2);
 }
@@ -101,11 +114,11 @@
   align-items: center;
 
   background-color: #f7f7fb;
-  
+
   border-radius: 0px 14px 14px 0px;
 }
 
-.inputField{
+.inputField {
   width: 90px;
 }
 

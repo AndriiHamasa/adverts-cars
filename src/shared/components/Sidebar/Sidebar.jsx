@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useCarContext } from "../Context/Context";
 import css from "./Sidebar.module.css";
 import PropTypes from "prop-types";
