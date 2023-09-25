@@ -33,7 +33,7 @@ const HomePage = () => {
           <div className={css.bannerContainer}>
             <img
               className={css.servicePicture}
-              src="../../pictures/services-banner2.png"
+              src="src/pictures/services-banner2.png"
               alt="car-banner"
             />
             <svg
