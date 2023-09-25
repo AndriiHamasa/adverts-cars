@@ -1,7 +1,7 @@
 .heroSection {
   position: relative;
 
-  background-image: url("./pictures/banner.jpg");
+  background-image: url("../../bacgroundImages/banner.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
