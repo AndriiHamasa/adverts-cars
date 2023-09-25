@@ -6,7 +6,7 @@ const NoInfoCar = () => {
       <h2 className={css.title}>Choose favorite car</h2>
       <img
         className={css.picture}
-        src="./src/pictures/no-car.jpg"
+        src="../../pictures/no-car.jpg"
         alt="no information about car"
       />
     </div>
