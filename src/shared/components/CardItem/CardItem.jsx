@@ -7,7 +7,6 @@ import { useCarContext } from "../Context/Context";
 const CardItem = ({ data }) => {
   const { modal, favoriteList } = useCarContext();
 
-
   const {
     address,
     rentalCompany,
@@ -31,12 +30,25 @@ const CardItem = ({ data }) => {
     accessories[0],
   ];
 
-  
-
   const handleOpenModal = () => {
     modal.setShowModal(data);
   };
 
+  const svg = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="16"
+      viewBox="0 0 2 16"
+      fill="none"
+    >
+      <path d="M1 0V16" stroke="#121417" strokeOpacity="0.1" />
+    </svg>
+  );
+
+  const wordsWithSvg = characteristicArray.flatMap((word, index) => {
+    return index === characteristicArray.length - 1 ? [word] : [word, svg];
+  });
 
   return (
     <li className={css.cardItem}>
@@ -45,7 +57,9 @@ const CardItem = ({ data }) => {
           <img className={css.imgItem} src={img} alt="" />
           <FavoriteSvgButton
             carId={id}
-            isFavorite={favoriteList.favoriteListValue.some(obj => obj.id === id)}
+            isFavorite={favoriteList.favoriteListValue.some(
+              (obj) => obj.id === id
+            )}
           />
         </div>
         <div className={css.containerTitle}>
@@ -54,7 +68,9 @@ const CardItem = ({ data }) => {
         </div>
         <div className={css.containerCharacteristics}>
           <p className={css.textCharacteristics}>
-            {characteristicArray.join(" ")}
+            {wordsWithSvg.map((item, index) => (
+              <span key={index}>{item}</span>
+            ))}
           </p>
         </div>
         <Button

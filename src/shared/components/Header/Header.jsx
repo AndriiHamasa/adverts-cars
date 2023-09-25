@@ -10,15 +10,15 @@ const Header = () => {
         <Link className={css.navItem} to="/">AutoFleet<span className={css.logoSpan}>Leasing</span></Link>
         <nav >
           <ul className={css.navList}>
-            <li>
-              <Link className={css.navItem} to="/">Home</Link>
+            <li id="home" className={css.navItemContainer}>
+                <Link  className={css.navItem} to="/">Home</Link>
             </li>
 
-            <li>
-              <Link className={css.navItem} to="/catalog">Catalog</Link>
+            <li id="catalog" className={css.navItemContainer}>
+              <Link  className={css.navItem} to="/catalog">Catalog</Link>
             </li>
-            <li>
-              <Link className={css.navItem} to="/favorites">Favorites</Link>
+            <li id="favorites" className={css.navItemContainer}>
+              <Link  className={css.navItem} to="/favorites">Favorites</Link>
             </li>
           </ul>
         </nav></div>

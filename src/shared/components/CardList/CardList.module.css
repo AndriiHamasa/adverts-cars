@@ -1,7 +1,7 @@
 .cardList {
   display: flex;
-  flex-wrap: wrap; /* Перенос на новую строку, если не помещается */
-  justify-content: space-between; /* Равномерное распределение по горизонтали */
+  flex-wrap: wrap; 
+  justify-content: space-between; 
   row-gap: 29px;
   column-gap: 50px;
 

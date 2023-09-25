@@ -1,20 +1,16 @@
-
-
-.modalContainer{
+.modalContainer {
   position: relative;
 
   overflow: hidden;
 }
 
-.closeBtnSvg{
+.closeBtnSvg {
   position: absolute;
   top: 16px;
   right: 16px;
 
   cursor: pointer;
 }
-
-/* .closeBtnSvg */
 
 .imageItem {
   width: 461px;
@@ -46,6 +42,9 @@
 
 .textCharacteristics,
 .textFunctionalitics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   color: rgba(18, 20, 23, 0.5);
   font-size: 12px;
   font-weight: 400;
@@ -104,7 +103,6 @@
   padding: 7px 14px;
   justify-content: center;
   align-items: center;
-  /* gap: 10px; */
   border-radius: 35px;
   background-color: #f9f9f9;
 }
@@ -117,3 +115,9 @@
   line-height: 18px;
   letter-spacing: -0.24px;
 }
+
+::-webkit-scrollbar {
+  display: none; 
+}
+
+

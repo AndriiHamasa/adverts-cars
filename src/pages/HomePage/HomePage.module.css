@@ -56,29 +56,17 @@
   height: 485px;
 }
 
-/* Позиционирование фигур */
-.shape1 {
-  /* position: absolute;
-  top: -70px;
-  left: 50px; */
-  /* z-index: 1;  */
-  /* transform: rotate(-157deg); */
-}
-
 .shape2 {
   position: absolute;
   top: 50px;
   left: 150px;
-  /* z-index: 1;  */
-  /* transform: rotate(-12deg); */
+  
 }
 
 .servicePicture {
   position: absolute;
   width: 817px;
   height: 485px;
-  /* top: 0px;
-  left: 0px; */
   z-index: 20;
 }
 
@@ -157,7 +145,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Сдвиг элемента на 50% от его ширины и высоты влево и вверх */
+  transform: translate(-50%, -50%); 
 }
 
 .experienceSubTitle {

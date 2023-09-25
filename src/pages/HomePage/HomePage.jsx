@@ -2,12 +2,18 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../shared/components/Button/Button";
 import css from "./HomePage.module.css";
 import ScrollToTopButton from "../../shared/components/ScrollToTopButton/ScrollToTopButton"
+import useNavFunc from "../../helpers/navFunc";
 
 const HomePage = () => {
   const navigate = useNavigate();
+
+  const navFunc = useNavFunc();
+  navFunc()
+
   const handleRentalCar = () => {
     navigate("/catalog");
   };
+
   return (
     <>
       <section className={css.heroSection}>

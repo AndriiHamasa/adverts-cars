@@ -5,7 +5,7 @@ import css from "./Modal.module.css";
 import Button from "../Button/Button";
 import { useCarContext } from "../Context/Context";
 
-Modal.setAppElement("#modal-root"); // Устанавливаем корневой элемент для доступности
+Modal.setAppElement("#modal-root"); 
 
 const CloseBtn = ({ onClick }) => {
   return (
@@ -63,16 +63,11 @@ const ModalComponent = () => {
   const characteristicArray = [
     adrressArr[adrressArr.length - 2],
     adrressArr[adrressArr.length - 1],
-    "id:",
-    id,
-    "Year:",
-    year,
-    "Type:",
-    type,
-    "Fuel Cunsumption:",
-    fuelConsumption,
-    "Engine Size:",
-    engineSize,
+    `id: ${id}`,
+    `Year: ${year}`,
+    `Type: ${type}`,
+    `Fuel Cunsumption: ${fuelConsumption}`,
+    `Engine Size: ${engineSize}`,
   ];
 
   const accessoriesAndfunctionalitiesArr = [...accessories, ...functionalities];
@@ -82,22 +77,21 @@ const ModalComponent = () => {
   useEffect(() => {
     if (data) {
       setModalIsOpen(true);
+      document.body.style.overflow = "hidden";
     }
   }, [data]);
 
   const closeModal = () => {
+    document.body.style.overflow = "auto";
     modal.setShowModal(null);
     setModalIsOpen(false);
   };
 
   const modalStyle = {
-
     overlay: {
-      backgroundColor: "rgba(18, 20, 23, 0.50)", // Устанавливаем фон для backdrop
+      backgroundColor: "rgba(18, 20, 23, 0.50)",
     },
     content: {
-
-      
       width: "541px",
       borderRadius: "24px",
       padding: "40px",
@@ -111,17 +105,39 @@ const ModalComponent = () => {
     console.log("Rental car");
   };
 
-  console.log("render MODAL");
+  const svg = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="16"
+      viewBox="0 0 2 16"
+      fill="none"
+    >
+      <path d="M1 0V16" stroke="#121417" strokeOpacity="0.1" />
+    </svg>
+  );
+
+  const characteristicsWithSvg = characteristicArray.flatMap((word, index) => {
+    return index === characteristicArray.length - 1 ? [word] : [word, svg];
+  });
+  const functionalitiesWithSvg = accessoriesAndfunctionalitiesArr.flatMap(
+    (word, index) => {
+      return index === characteristicArray.length - 1 ? [word] : [word, svg];
+    }
+  );
+
 
   return (
-    <div className={css.modalContainer} style={{ overflow: "hidden" }}>
+    <div className={css.modalContainer}>
       <Modal
+        className={css.modalScrollBar}
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="modal"
         style={modalStyle}
       >
         <CloseBtn onClick={closeModal} />
+
         <img src={img} alt="car" className={css.imageItem} />
         <h2 className={css.nameTitle}>
           {`${make} `}
@@ -129,14 +145,18 @@ const ModalComponent = () => {
           {year}
         </h2>
         <p className={css.textCharacteristics}>
-          {characteristicArray.join(" ")}
+          {characteristicsWithSvg.map((item, index) => (
+            <span key={index}>{item}</span>
+          ))}
         </p>
         <p className={css.textDescription}>{description}</p>
         <h3 className={css.subTitleAccessories}>
           Accessories and functionalities:
         </h3>
         <p className={css.textFunctionalitics}>
-          {accessoriesAndfunctionalitiesArr.join(" ")}
+          {functionalitiesWithSvg.map((item, index) => (
+            <span key={index}>{item}</span>
+          ))}
         </p>
         <h3 className={css.subTitleConditions}>Rental Conditions: </h3>
         <ul className={css.achivmentList}>

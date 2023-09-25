@@ -14,7 +14,6 @@ const Input = ({ label, register, registame, classStyle }) => (
   </div>
 );
 
-// eslint-disable-next-line react/display-name
 const SelectForm = forwardRef(
   ({ onChange, onBlur, name, options, width, label }, ref) => (
     <div className={css.inputContainer}>

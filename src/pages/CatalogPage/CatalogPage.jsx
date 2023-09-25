@@ -9,6 +9,7 @@ import fetchData from "../../helpers/fetchData";
 import takeCardFromArr from "../../helpers/takeCardFromArr";
 import getFilteredData from "../../helpers/getFilteredData";
 import ScrollToTopButton from "../../shared/components/ScrollToTopButton/ScrollToTopButton";
+import useNavFunc from "../../helpers/navFunc";
 
 const CatalogPage = () => {
   const [error, setError] = useState(null);
@@ -16,7 +17,9 @@ const CatalogPage = () => {
   const { carList, favoriteList } = useCarContext();
   const [page, setPage] = useState(1);
 
-  // здесь, либо делается фетч и закидует в локал, либо берется с локал
+  const navFunc = useNavFunc()
+  navFunc()
+
   useEffect(() => {
     const isInLocal = localStorage.getItem(CAR_CONSTANT_LIST.CAR_LIST);
     const isFavoriteInLocal = localStorage.getItem(CAR_CONSTANT_LIST.FAVORITE_LIST)
@@ -24,7 +27,6 @@ const CatalogPage = () => {
       try {
         const response = await fetchData();
         carList.carListFn(response);
-        // наверное можно попробівать сразу закинуть в локал
       } catch (error) {
         setError(error);
       }
@@ -49,7 +51,6 @@ const CatalogPage = () => {
     }
   }, [carList, favoriteList]);
 
-  // сохраняем изменения в локал CAR_LIST
   useEffect(() => {
     const isInLocal = localStorage.getItem(CAR_CONSTANT_LIST.CAR_LIST);
     if (
@@ -66,7 +67,6 @@ const CatalogPage = () => {
  
 
   
-  // здесь доодаем в visibleArr
   useEffect(() => {
     if (
       (carList.carListValue.length !== 0 && visibleArr.length === 0) ||
@@ -105,16 +105,13 @@ const CatalogPage = () => {
     }
 
     if (processedData.length === 0) {
-      console.log("зашли, чтобы выйти")
       return
     }
 
     const filteredData = getFilteredData(processedData, carList.carListValue)
-    console.log('filteredData уже в CatalogPage, тоесть ответ', filteredData)
 
 
     if (filteredData.length !== 0) {
-      console.log('ЧАСТО ?')
       setPage(1)
       setvisibleArr(filteredData)
     }

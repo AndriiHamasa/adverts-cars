@@ -2,17 +2,10 @@ import { useCallback } from "react";
 import { useCarContext } from "../Context/Context";
 import css from "./Sidebar.module.css";
 import PropTypes from "prop-types";
-// import TrashCanIcon from "./trash-can-icon.svg#basket";
 
 const Sidebar = ({ handleSelect, removeFavorite }) => {
-  // const [data, setData] = useState([]);
   const { favoriteList } = useCarContext();
-  console.log(
-    "favoriteList.favoriteListValue in Sidebar",
-    favoriteList.favoriteListValue
-  );
 
-  // здесь меняется айдишник и сплывает наверх
   const handleClick = useCallback(
     (id) => {
       handleSelect(id);
@@ -40,8 +33,6 @@ const Sidebar = ({ handleSelect, removeFavorite }) => {
           </li>
         ))}
       </ul>
-
-      {/* <TrashCanIcon width={50} height={50} /> Укажите желаемые размеры */}
     </aside>
   );
 };

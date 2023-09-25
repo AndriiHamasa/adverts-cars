@@ -1,0 +1,38 @@
+.noInfoCarContainer {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+
+  animation: jump 2.5s ease infinite;
+}
+
+.title {
+  font-size: 24px;
+  color: #121417;
+}
+
+.picture {
+  width: 200px;
+}
+
+@keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0) scale(1); 
+  }
+  12.5%,
+  37.5% {
+    transform: translateY(-100px) scale(0.8); 
+  }
+  25%,
+  50% {
+    transform: translateY(0) scale(1); 
+  }
+  62.5%,
+  87.5% {
+    transform: translateY(-50px) scale(0.9); 
+  }
+}

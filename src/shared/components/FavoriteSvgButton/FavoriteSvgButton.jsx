@@ -27,36 +27,20 @@ const isInFavoriteList = (carId, arr) => {
 
 
 const FavoriteSvgButton = ({ carId, isFavorite }) => {
-  // Обработчик клика для кнопки
   const [isClicked, setIsClicked] = useState(isFavorite);
   const { carList, favoriteList } = useCarContext();
 
-  // нужно проверить если есть в локал, то поменять стейт на isClicked
-  
-  
-
-  // if (isFavorite) {
-  //   setIsClicked(true)
-  // }
-  
-
-
-
   useEffect(() => {
-    // если кликнутая карточка и уже нет, то додаем в контекст (ДОДАЕМ)
     if (isClicked && !isInFavoriteList(carId, favoriteList.favoriteListValue)) {
       favoriteList.favoriteListFn(prev => [...prev, findCard(carId, carList.carListValue)])
     }
-    // (ЗАБИРАЕМ)
     if (!isClicked && isInFavoriteList(carId, favoriteList.favoriteListValue)) {
-      // сейчас сделаем новый массив уже без карточки
       const arrWithDeletedCard = updatedArr(carId, favoriteList.favoriteListValue)
       favoriteList.favoriteListFn(arrWithDeletedCard)
     }
     
   }, [carId, carList.carListValue, favoriteList, isClicked])
 
-  // теперь, если изменилась длинна favoriteList.favoriteListValue, нужно закинуть в локалСторадж
   useEffect(() => {
     saveDataToLocalStorage({
       type: CAR_CONSTANT_LIST.FAVORITE_LIST,
